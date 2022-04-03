@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 리액트 연습
+=======
+>>>>>>> 2143b72122e30ef20827ed007c2ea8c1b75cba2d
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## how to run
@@ -25,7 +28,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### 사용한 라이브러리
 - react
+<<<<<<< HEAD
 - styled-components : css 스타일 적용 라이브러리
 - axios : http 요청 클라이언트 라이브러리
 - react-query : 리액트 data-fetching 라이브러리
 - react-minimal-pie-chart : 리액트 파이차트 라이브러리
+=======
+- styled-components
+- axios
+- react-query
+- react-minimal-pie-chart
+>>>>>>> 2143b72122e30ef20827ed007c2ea8c1b75cba2d
