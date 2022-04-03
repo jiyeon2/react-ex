@@ -1,9 +1,23 @@
 import styled from 'styled-components';
+import {useState} from 'react';
+import {useDetailData} from '../../query/useDetailData';
 
 const ListItemContainer = styled.div`
+  &:nth-child(2n) {
+    background-color: #eee;
+  }
+  &.open {
+    background-color: #bce;
+  }
+`
+const ListItemRow = styled.div`
   display: flex;
   flex-direction:row ;
-  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: #cee;
+  }
+
 `
 
 const Age = styled.p`
@@ -35,19 +49,40 @@ function ListItem (props) {
     gender,
     isDeath,
     personID,
-    race
+    race,
   } = props;
+  const [open, setOpen] = useState(false);
+  const {data} = useDetailData(personID);
   return (
-    <ListItemContainer>
-      <PersonId>{personID}</PersonId>
-      <Gender>{gender}</Gender>
-      <BirthDate>{birthDatetime}</BirthDate>
-      <Age>{age}</Age>
-      <Race>{race}</Race>
-      <Ethnicity>{ethnicity}</Ethnicity>
-      <IsDeath>{JSON.stringify(isDeath)}</IsDeath>
+    <ListItemContainer className={open && 'open'}>
+      <ListItemRow onClick={() => setOpen(o => !o)}>
+        <PersonId>{personID}</PersonId>
+        <Gender>{gender}</Gender>
+        <BirthDate>{birthDatetime}</BirthDate>
+        <Age>{age}</Age>
+        <Race>{race}</Race>
+        <Ethnicity>{ethnicity}</Ethnicity>
+        <IsDeath>{JSON.stringify(isDeath)}</IsDeath>
+      </ListItemRow>
+      {open && <Detail data={data}/>}
     </ListItemContainer>
+    
   )
 }
 
 export default ListItem;
+
+
+function Detail(props) {
+  const {data} = props;
+  if (!data) return 'loading...'
+  return (<div>
+    <p>전체 방문수 : {data.visitCount}</p>
+    <p>진단정보</p>
+    <ul>
+    {data.conditionList.map((cond,idx) => <li key={`${cond}_${idx}`}>{cond}</li>)}
+    </ul>
+    
+    
+  </div>)
+}
