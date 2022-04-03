@@ -23,7 +23,7 @@ function Table(props) {
   const lastPage = data ? Math.ceil(data.totalLength / itemPerPage) : undefined;
 
   return (
-      <div>
+      <div style={{display: 'flex', flexDirection:'column', alignItems:'center'}}>
         <PaginationContainer
           itemPerPage={itemPerPage}
           onSelectChange={(newValue) => setItemPerPage(newValue)}
@@ -36,8 +36,19 @@ function Table(props) {
         <FilterContainer setFilter={setFilter}/>     
         
         <StatsContainer filter={filter}/>
-        <ListHeader sort={sort} setSort={setSort} />
-        <List data={data} isLoading={isLoading} isError={isError}/>
+        <div style={{width: '100%',maxWidth: '1200px', margin: '16px'}}>
+          <ListHeader sort={sort} setSort={setSort} />
+          <List data={data} isLoading={isLoading} isError={isError}/>
+        </div>
+        <PaginationContainer
+          itemPerPage={itemPerPage}
+          onSelectChange={(newValue) => setItemPerPage(newValue)}
+          lastPage={lastPage}
+          currentPage={currentPage}
+          handlePrevClick={() => setCurrentPage((p) => p - 1)}
+          handleNextClick={() => setCurrentPage((p) => p + 1)} />
+   
+        
       </div>
   );
 }

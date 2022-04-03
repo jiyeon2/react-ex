@@ -47,6 +47,7 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row ;
   width: 100%;
+  font-weight: bold;
   &>.header-column {
     width: 100px;
   }
