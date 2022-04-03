@@ -52,7 +52,7 @@ function ListItem (props) {
     race,
   } = props;
   const [open, setOpen] = useState(false);
-  const {data} = useDetailData(personID);
+  const {data} = useDetailData(open && personID);
   return (
     <ListItemContainer className={open && 'open'}>
       <ListItemRow onClick={() => setOpen(o => !o)}>
